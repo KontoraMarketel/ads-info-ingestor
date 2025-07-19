@@ -1,0 +1,19 @@
+services:
+  ingestor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      KAFKA_CONSUMER_TOPIC: ingest-ads-stats-tasks
+      KAFKA_PRODUCER_STG_ADS_INFO_TASKS: stg-ads-info-tasks
+      KAFKA_BOOTSTRAP_SERVERS: kafka-compose-kafka-broker-1:9092
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      MINIO_BUCKET: ingests
+    networks:
+      - global
+
+networks:
+  global:
+    external: true
