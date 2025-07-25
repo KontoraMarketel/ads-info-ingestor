@@ -76,7 +76,7 @@ async def process_and_produce(msg_value, producer, minio_pool: MinioClientPool):
                 key=encoded_task_id,
             )
         except Exception as e:
-            logging.error(f"Error processing message: {e}")
+            logging.error(f"Error processing message: {e}", exc_info=True, stack_info=True)
             # TODO: write task to out of the box table
 
 async def main():
