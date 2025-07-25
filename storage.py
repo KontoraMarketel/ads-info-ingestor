@@ -33,3 +33,5 @@ async def download_from_minio(
         return json.loads(content.decode("utf-8"))
     except client.exceptions.NoSuchKey:
         raise FileNotFoundError(f"No such key: {key}")
+    finally:
+        await pool.release(client)
