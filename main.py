@@ -38,7 +38,6 @@ async def handle_message(msg, minio_pool: MinioClientPool):
         key=minio_key,
     )
 
-    logging.info(f"Campaigns IDs: {campaigns}")
 
     data = await fetch_data(api_token, campaigns)
     load_data = {
